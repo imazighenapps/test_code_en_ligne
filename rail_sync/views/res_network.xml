@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="res_network_form_view">
+      <field name="name">res.network.form.view</field>
+      <field name="model">res.network</field>
+      <field name="inherit_id" ref="rail_network_data.res_network_form_view"/>
+      <field name="arch" type="xml">
+
+            
+            <xpath expr="//header" position="inside">
+                <button string="Générer le fichier de configuration" name="create_json_file_data" type="object" class="btn-primary"/>
+                <button string="Générer le fichier des utilisateurs " name="get_users_for_file" type="object" class="btn-secondary"/>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Fichier de configuration">
+                        <field name="config_file_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="date"/>            
+                                <field name="file_data"/>       
+                                <field name="file_filename" column_invisible="1"/>  
+                                <field name="is_active"/>   
+                                <field name="description"/>     
+                            </list>
+                        </field>
+                    </page>
+                    <page  string="Fichier ventes">
+                        <field name="order_file_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="date_file"/>            
+                                <field name="file_data"/>       
+                                <field name="file_filename" column_invisible="1"/>  
+                                <field name="description"/>     
+                            </list>
+                        </field>
+                    </page>
+                    <page  string="Fichier utilisateurs">
+                        <field name="users_file_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="date_file"/>            
+                                <field name="file_data"/>       
+                                <field name="file_filename" column_invisible="1"/>  
+                                <field name="description"/>     
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+      </field>
+    </record>
+
+
+</odoo>
+
+
+ 

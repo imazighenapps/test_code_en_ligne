@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="res_class_list">
+      <field name="name">res.class.list</field>
+      <field name="model">res.class</field>
+      <field name="arch" type="xml">
+        <list editable="bottom">
+            <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="res_class_action">
+      <field name="name">Classes</field>
+      <field name="res_model">res.class</field>
+      <field name="view_mode">list</field>
+      <field name="target">current</field>
+    </record>
+  </data>
+</odoo>

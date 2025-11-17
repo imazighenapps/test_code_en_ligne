@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>   
+    <record id="create_order_job" model="ir.cron">
+        <field name="name">rail sync: Auto-Create Orders</field>
+        <field name="model_id" ref="model_res_network"/>
+        <field name="state">code</field>
+        <field name="code">model.create_orders()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>days</field>
+        <field name="priority">1</field>
+    </record>
+</odoo>    

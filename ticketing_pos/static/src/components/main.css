@@ -1,0 +1,19 @@
+.selected-row {
+    background-color: #d4edda; 
+    cursor: pointer;
+
+}
+.pointed-row{
+    cursor: pointer;
+
+}
+
+
+html .o_web_client > .o_action_manager {
+
+    overflow: auto !important;
+}
+
+
+
+

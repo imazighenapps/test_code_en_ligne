@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="base_price_kilometer_tree_view">
+      <field name="name">base.price.kilometer.tree.view</field>
+      <field name="model">base.price.kilometer</field>
+      <field name="arch" type="xml">
+        <list string="Barèmes des prix de transport">
+            <field name="name" />
+            <field name="service_id"/>
+            <field name="class_ids"  widget="many2many_tags"/>
+            <field name="train_type_ids" widget="many2many_tags" />
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="base_price_kilometer_form_view">
+      <field name="name">base.price.kilometer.form.view</field>
+      <field name="model">base.price.kilometer</field>
+      <field name="arch" type="xml">
+        <form string="Prix de base Kilométrique">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name" />
+                    <field name="service_id" />
+                </group>
+            </group>
+            <group>
+               <group>
+                  <field name="class_ids"  widget="many2many_tags"/>
+                </group>
+                <group>
+                  <field name="train_type_ids" widget="many2many_tags" />
+                </group>
+            </group>   
+            <notebook>
+              <page string="Prix par distance">
+                  <field name="distance_price_ids">
+                      <list editable="bottom" >
+                        <field name="start_distance" style="text-align: center"/>    
+                        <field name="end_distance" style="text-align: center"/>       
+                        <field name="price" style="text-align: center"/>   
+                      </list>  
+                      
+                      <form>
+                        <group>
+                            <field name="start_distance" />    
+                            <field name="end_distance" />       
+                            <field name="price" />    
+                        </group>
+                      </form>                
+                  </field>
+                  <style>
+                     .o_list_number_th{
+                       text-align: center !important;
+                     }
+                  </style>
+              </page>
+             
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="base_price_kilometer_action">
+      <field name="name">Prix de base Kilométrique</field>
+      <field name="res_model">base.price.kilometer</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+  </data>
+</odoo>

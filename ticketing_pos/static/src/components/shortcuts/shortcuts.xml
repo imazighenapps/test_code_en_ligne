@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+  <t t-name="Shortcuts" owl="1">
+    <div class="dropdown">
+      <button class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+        <i class="bi bi-list"></i> Raccourcis
+      </button>
+
+      <div class="dropdown-menu p-3" style="min-width: 350px; z-index: 1050;">
+        <div t-foreach="state.shortcuts" t-as="item" t-key="item.id" class="mb-2">
+          <div class="input-group mb-2">
+            <select t-att-id="item.id" class="form-select" t-on-change="onStationChange">
+              <option value="" disabled="disabled" > Choisir une gare...</option>
+              <t t-foreach="props.stations" t-as="station" t-key="station.id">
+               <option t-att-value="station.id" t-att-selected="station.id === item.station_id ? 'selected' : ''">
+                    <t t-esc="station.name"/>
+                </option>
+              </t>
+            </select>
+            <input type="text" class="form-control" placeholder="Raccourci" t-att-id="item.id" t-att-value="item.shortcut"
+              t-on-input="onShortcutChange" />
+            
+            <button class="btn btn-danger" t-att-id="item.id" type="button" t-on-click.prevent="removeShortcut">
+              <i class="fa d-print-none fa-trash-o" ></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="gap-2 mb-5">
+          <button class="btn btn-secondary btn-sm" type="button" t-on-click.prevent="addShortcut">
+            ➕
+          </button>
+        </div>
+
+        <div class="d-grid gap-2  ps-3 pe-3">
+          <button class="btn btn-primary btn-sm" type="button" t-on-click.prevent="saveShortcuts">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+              <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z"/>
+            </svg> Enregistrer
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </t>
+</templates>

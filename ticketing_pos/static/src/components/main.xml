@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="main" owl="1">
+
+    <div class="container-fluid mt-4 main-class">
+      <div class="row gx-4">
+        <!-- Zone principale : infos et choix des trajets et voyageurs -->
+        <div class="col-lg-9 ">
+          <!-- Section Stations -->
+          <div class="card mb-4 shadow-sm stations-section">
+            <div class="card-body">
+              <Stations 
+                stations="state.stations"
+                onStartStationSelected="onStartStationSelected"
+                onEndStationSelected="onEndStationSelected"
+                onTrainClassSelected="onTrainClassSelected"
+                classes="state.classes"
+                trainClassSelected="state.trainClassSelected"
+                distance="state.distance"
+                endStationSelected="state.endStationSelected"
+              />
+            </div>
+          </div>
+
+          <!-- Section Trains -->
+         <div class="card mb-4 shadow-sm trains-section">
+            <div class="card-body overflow-auto" style="height: 42vh;">
+              <Trains
+                onTrainsSelected="onTrainsSelected"
+                filtredTrainsByDateTime="state.filtredTrainsByDateTime"
+                selectedTrains="state.selectedTrains"
+              />
+            </div>
+          </div>
+
+          <!-- Section Voyageurs -->
+          <div class="card mb-4 shadow-sm traveler-section">
+            <div class="card-body">
+              <Traveler
+                travelerProfile="state.travelerProfile"
+                onTravelerProfileChange="onTravelerProfileChange"
+                onTravelerProfileWithChange="onTravelerProfileWithChange"
+                onTravelerCountChange="onTravelerCountChange"
+                onTravelerWithCountChange="onTravelerWithCountChange"
+              />
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- Zone latérale : résumé tarifaire & Shortcuts -->
+       
+        <div class="col-lg-3">
+          <div class="row">
+            <div class="col-6">
+              <Shortcuts stations="state.stations" getShortcuts="getShortcuts"/>
+            </div>
+            <div class="col-6">
+              <PrintStatus printerName="state.printerName"/>
+            </div>
+          </div>
+
+          <div class="card tarifs-section sticky-top shadow-sm" style="top: 1rem;">
+            <div class="card-header bg-success text-white">
+              <h5 class="mb-0">Résumé tarifaire</h5>
+            </div>
+            <div class="card-body">
+              <Tarifs price="state.price" 
+                      departeurDate='state.departeurDate' 
+                      departeurTime="state.departeurTime"
+                      getDeparteurDate="getDeparteurDate" 
+                      getDeparteurTime="getDeparteurTime"
+                      />
+              <button type="button" class="btn btn-success w-100 mt-3">
+                Valider la vente
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </t>
+</templates>

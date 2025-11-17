@@ -1,0 +1,134 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="ticketing_order_form">
+      <field name="name">ticketing.order.form</field>
+      <field name="model">ticketing.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+              <button string="Rembourser" name="do_refund" type="object" invisible="order_type  in ('refund','cancel','working_capital_advance','working_capital_to_recover')" class="oe_highlight"/>
+              <button string="Annuler" name="do_cancel_order" invisible="order_type in ('refund','cancel','working_capital_advance','working_capital_to_recover')" type="object" class="btn btn-danger"/>
+              <field name="order_type" widget="statusbar" />
+          </header>
+
+          <sheet>
+           <group col="12">
+              <group colspan="4">
+                  <field name="name"/>
+                  <field name="train1"/>
+                  <field name="train1_id"/>
+                  <field name="start_station"/> 
+                  <field name="start_station_id"/>  
+                  <field name="class_train"/> 
+                  <field name="class_train_id"/> 
+                  <field name="company_id" invisible="1"/>      
+                  <field name="currency_id" invisible="1"/> 
+              </group>
+              <group colspan="4">
+                  <field name="departure_date"/> 
+                  <field name="train2"/>
+                  <field name="train2_id"/>
+                  <field name="correspondence"/> 
+                  <field name="correspondence_id"/>   
+              </group>
+              <group colspan="4">
+                  <field name="departure_hour" widget="float_time"/> 
+                  <field name="end_station"/> 
+                  <field name="end_station_id"/>   
+                  <field name="distance"/> 
+              </group>
+          </group>
+          
+          <notebook>
+              <page name="pricing_summary" string="Résumé tarifaire">
+                <group>
+                  <group>
+                      <field name="course"/>         
+                      <field name="traveler_profile"/> 
+                      <field name="traveler_profile_id"/>     
+                      <field name="passengers_number"/>         
+                      <field name="passengers_discount"/>  
+                      <field name="order_type"/>
+                  </group>
+                  <group>
+                      <field name="traveler_profile_with"/>
+                      <field name="traveler_profile_with_id"/>
+                      <field name="companion_number"/>   
+                      <field name="companion_discount"/> 
+                  </group>
+                </group>
+                
+              </page>
+              <page string="JSON">
+                <group>
+                    <field name="json_order"/>
+                </group>
+              </page>
+              <page string="Motif d'annulation" invisible="order_type != 'cancel'">
+                    <field name="cancellation_reason"/>
+              </page>
+          </notebook>
+          <group class="oe_subtotal_footer fw-bold" colspan="2" name="sale_total">
+              <!-- <field name="amount_untaxed"/>  
+              <field name="amount_tax"/>    
+              <field name="amount_stamp"/>     -->
+              <field name="amount_total"/> 
+          </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="ticketing_order_list">
+      <field name="name">ticketing.order.list</field>
+      <field name="model">ticketing.order</field>
+      <field name="arch" type="xml">
+        <list create="0" delete="0"  edit="0" decoration-danger="order_type=='cancel'"
+                                              decoration-warning="order_type=='refund'"
+                                              decoration-success="order_type in ('sale','booking')"
+                                                > 
+            <field name="name"/>
+            <field name="start_station"/> 
+            <field name="end_station"/>  
+            <field name="distance"/> 
+            <field name="departure_date"/> 
+            <field name="departure_hour" widget="float_time"/> 
+            <field name="order_type" widget="badge" decoration-danger="order_type=='cancel'" decoration-success="order_type in ('sale','booking')"/>
+         
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="ticketing_order_graph">
+      <field name="name">ticketing.order.graph</field>
+      <field name="model">ticketing.order</field>
+      <field name="arch" type="xml">
+          <graph sample="1">
+                <field name="start_station_id" type="row"/>
+                <field name="departure_date" interval="month" type="col"/>
+                <field name="amount_total" type="measure"/>
+          </graph>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="ticketing_order_pivot">
+      <field name="name">ticketing.order.pivot</field>
+      <field name="model">ticketing.order</field>
+      <field name="arch" type="xml">
+          <pivot sample="1">
+              <field name="start_station_id" type="row"/>
+              <field name="departure_date" interval="month" type="col"/>
+              <field name="amount_total" type="measure"/>
+          </pivot>
+      </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="ticketing_order_action">
+      <field name="name">Ventes</field>
+      <field name="res_model">ticketing.order</field>
+      <field name="view_mode">list,form,graph,pivot</field>
+    </record>
+  </data>
+</odoo>

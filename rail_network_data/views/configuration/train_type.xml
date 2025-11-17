@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="train_type_list">
+      <field name="name">train.type.list</field>
+      <field name="model">train.type</field>
+      <field name="arch" type="xml">
+        <list editable="bottom">
+            <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="train_type_action">
+      <field name="name">Type de trains</field>
+      <field name="res_model">train.type</field>
+      <field name="view_mode">list</field>
+      <field name="target">current</field>
+    </record>
+  </data>
+</odoo>

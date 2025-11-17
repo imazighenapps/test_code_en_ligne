@@ -1,0 +1,14 @@
+<odoo>
+<data>
+    <menuitem id="ticketing_pos" name="POS" parent="rail_network_data.Ticketing_root" action="ticketing_action_client" sequence="51"/>    
+    <menuitem id="operation_root" name="Opérations" parent="rail_network_data.Ticketing_root" sequence="52"/>
+        <menuitem id="ticketing_order" name="Ventes" parent="operation_root" action="ticketing_order_action" sequence="10"/>    
+        <menuitem id="refund_order" name="Remboursement" parent="operation_root" action="refund_order_action" sequence="20"/>    
+        <menuitem id="order_file" name="Fichiers Ventes gare" parent="operation_root" action="order_file_action" sequence="30"/>    
+    
+    <menuitem id="users_pos" name="Utilisateurs" parent="rail_network_data.config_root" action="users_pos_action" sequence="80"/>    
+
+
+
+</data>
+</odoo>

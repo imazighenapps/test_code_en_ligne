@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_res_users_shortcuts,access_res_users_shortcuts,model_res_users_shortcuts,base.group_user,1,1,1,1
+access_ticketing_order,access_ticketing_order,model_ticketing_order,base.group_user,1,1,1,1
+access_refund_order,access_refund_order,model_refund_order,base.group_user,1,1,1,1
+access_order_file,access_order_file,model_order_file,base.group_user,1,1,1,1
+access_res_users_pos,access_res_users_pos,model_res_users_pos,base.group_user,1,1,1,1
+access_do_refund,access_do_refund,model_do_refund,base.group_user,1,1,1,1
+access_do_cancel,access_do_cancel,model_do_cancel,base.group_user,1,1,1,1
+
+

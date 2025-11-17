@@ -1,0 +1,11 @@
+<odoo>
+    <data>  
+        <record id="ticketing_action_client" model="ir.actions.client">
+            <field name="name">POS</field>
+            <field name="tag">ticketing_pos</field>
+        </record>
+          
+   
+
+    </data>
+</odoo>    

@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="ticketing_service_list">
+      <field name="name">ticketing.service.list</field>
+      <field name="model">ticketing.service</field>
+      <field name="arch" type="xml">
+        <list editable="bottom">
+            <field name="name"/>
+            <field name="class_ids" widget="many2many_tags"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="ticketing_service_action">
+      <field name="name">Services</field>
+      <field name="res_model">ticketing.service</field>
+      <field name="view_mode">list</field>
+      <field name="target">current</field>
+    </record>
+  </data>
+</odoo>

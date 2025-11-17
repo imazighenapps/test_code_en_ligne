@@ -1,0 +1,31 @@
+
+<odoo>
+<data>
+    
+    <menuitem id="Ticketing_root" name="Billetterie" sequence="10" web_icon="rail_network_data,static/description/icon.png" />
+        <menuitem id="res_network_root" name="Réseaux ferroviaire" parent="Ticketing_root"/>  
+            <menuitem id="res_network" name="Réseaux ferroviaire" parent="res_network_root" action="res_network_action" sequence="10"/>  
+            <menuitem id="res_station" name="Gares" parent="res_network_root" action="res_station_action" sequence="20"/>    
+            <menuitem id="res_branch" name="Branches" parent="res_network_root" action="res_branch_action_window" sequence="30"/>  
+            <menuitem id="res_relation" name="Relations" parent="res_network_root" action="res_relation_action" sequence="40"/>    
+            <menuitem id="res_train" name="Trains" parent="res_network_root" action="res_train_action" sequence="50"/>    
+            <menuitem id="config_file" name="Fichier de configuration" parent="res_network_root" action="config_file_action" sequence="50"/>    
+            
+        <menuitem id="price_root" name="Tarif" parent="Ticketing_root"  sequence="50"/>    
+            <menuitem id="base_price_kilometer" name="Prix de base Kilométrique" parent="price_root" action="base_price_kilometer_action" sequence="10"/>    
+            <menuitem id="scale_pricing" name="Barème des prix de transport" parent="price_root" action="scale_pricing_action" sequence="20"/>    
+            <menuitem id="traveler_profile" name="Profil voyageur" parent="price_root" action="traveler_profile_action_window" sequence="30"/>    
+            <menuitem id="account_tax_stamp" name="Timbre fiscal" parent="price_root" action="account_tax_stamp_action" sequence="40"/>    
+        
+        <menuitem id="config_root" name="Configuration" parent="Ticketing_root" sequence="90"/>    
+            <menuitem id="train_calendar" name="Calendrier" parent="config_root" action="train_calendar_action" sequence="10"/>    
+            <menuitem id="res_class" name="Classes" parent="config_root" action="res_class_action" sequence="20"/>    
+            
+            <menuitem id="ticketing_service" name="Services" parent="config_root" action="ticketing_service_action" sequence="30"/>    
+            <menuitem id="train_type" name="Types des trains" parent="config_root" action="train_type_action" sequence="40"/>    
+            <menuitem id="traffic_mode" name="Modes de circulation" parent="config_root" action="traffic_mode_action" sequence="50"/>    
+
+
+
+</data>
+</odoo>

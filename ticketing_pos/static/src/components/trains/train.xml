@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="Trains" owl="1">
+       <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-hourly-tab" data-bs-toggle="tab" data-bs-target="#nav-hourly" type="button" role="tab" aria-controls="nav-hourly" aria-selected="true">Horaire</button>
+            <button class="nav-link" id="nav-trains-tab" data-bs-toggle="tab" data-bs-target="#nav-trains" type="button" role="tab" aria-controls="nav-trains" aria-selected="false">Trains</button>
+            <button class="nav-link" id="nav-stop-stations-tab" data-bs-toggle="tab" data-bs-target="#nav-stop-stations" type="button" role="tab" aria-controls="nav-stop-stations" aria-selected="false">Gares d'arrêt</button>
+        </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-hourly" role="tabpanel" aria-labelledby="nav-hourly-tab">
+                <table class="table table-hover table-bordered table-fixed" id="my-tab-timetable">
+                    <thead>
+                        <tr>
+                            <th scope="col" width='9%'>Train</th>
+                            <th scope="col" width='18%'>Heure de départ</th>
+                            <th scope="col" width='16%'>Heure d'arrivée</th>
+                            <th scope="col" width='7%' >Durée</th>
+                            <th scope="col" width='18%' >Correspondance</th>
+                            <th scope="col" width='14%' >Terminus</th>
+                            <th scope="col" width='7%' >Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.filtredTrainsByDateTime" t-as="item" t-key="item_index">
+                            <tr class="pointed-row" t-att-class=" item.selected ? 'selected-row' : ''"
+                                                t-on-click="() => this.selectTrains(item)">
+                                <td><t t-esc="item.trains[0].code"/></td>
+                                <td><t t-esc="item.trains[0].stations[0].arrival_time"/></td>
+                                <td><t t-esc="item.trains[0].stations[item.trains[0].stations.length - 1].arrival_time"/></td>
+                                <td><t t-esc="item.trains[0].duration"/></td>
+                                <td><t t-esc="item.trains[0].correspondence.name"/></td>
+                                <td><t t-esc="item.trains[0].terminus.name"/></td>
+                                <td><t t-esc="item.trains[0].distance"/> KM</td>
+                            
+                            </tr> 
+                        </t>
+                    </tbody>
+                            
+                </table>
+            </div>
+            <div class="tab-pane fade" id="nav-trains" role="tabpanel" aria-labelledby="nav-trains-tab">
+                <table class="table table-hover table-bordered table-fixed to_compute" id="table-trains">
+                    <thead>
+                        <tr>
+                            <th scope="col"  width='6%' >Train</th>
+                            <th scope="col"  width='16%' >Heure de départ</th>
+                            <th scope="col"  width='16%' >Heure d'arrivée</th>
+                            <th scope="col"  width='6%' >Durée</th>
+                            <th scope="col"  width='8%' >Service</th>
+                            <th scope="col"  width='15%' >Correspondance</th>
+                            <th scope="col"  width='9%' >Terminus</th>
+                            <th scope="col"  width='6%'>Distance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <t t-if="props.selectedTrains">
+                            <tr t-foreach="props.selectedTrains.trains" t-as="item" t-key="item_index">
+                                <td><t t-esc="item.code"/></td>
+                                <td><t t-esc="item.stations[0].arrival_time"/></td>
+                                <td><t t-esc="item.stations[item.stations.length - 1].arrival_time"/></td>
+                                <td><t t-esc="item.duration"/></td>
+                                <td><t t-esc="item.service.name"/></td>
+                                <td><t t-esc="item.correspondence.name"/></td>
+                                <td><t t-esc="item.terminus.name"/></td>
+                                <td><t t-esc="item.distance"/> KM</td>
+                            </tr>
+                        </t> 
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="nav-stop-stations" role="tabpanel" aria-labelledby="nav-stop-stations-tab">
+                <table class="table table-hover table-bordered text-left table-fixed" id="my-tab-stations">
+                    <thead>
+                        <tr class="text-left">
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-if="props.selectedTrains">
+                            <t t-foreach="props.selectedTrains.trains" t-as="item" t-key="item_index">
+                                <tr t-foreach="item.stations" t-as="station" t-key="station_index">
+                                    <td><t t-esc="station.name"/></td>
+                                </tr>         
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <style>
+            .table > :not(caption) > * > * {
+                padding: 0.2rem 0.5rem;
+            
+            }
+        </style>
+    </t>
+</templates>

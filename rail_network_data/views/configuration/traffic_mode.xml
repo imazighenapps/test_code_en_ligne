@@ -1,0 +1,21 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="traffic_mode_list">
+      <field name="name">traffic.mode.list</field>
+      <field name="model">traffic.mode</field>
+      <field name="arch" type="xml">
+        <list editable="bottom">
+            <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="traffic_mode_action">
+      <field name="name">Mode de circulation</field>
+      <field name="res_model">traffic.mode</field>
+      <field name="view_mode">list</field>
+      <field name="target">current</field>
+    </record>
+  </data>
+</odoo>

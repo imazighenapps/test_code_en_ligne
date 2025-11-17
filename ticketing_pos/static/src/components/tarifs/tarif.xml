@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="Tarifs" owl="1">
+        <div class="form-group row tarifs-form">
+            <div class="form-group col-md-11">
+                <div class="input-group mb-3 input_style">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Date</div>
+                    </div>
+                    <input id="date" type="date" class="form-control dateselect" t-on-change="changeDeparteurDate" t-att-value="props.departeurDate"/>
+                    <input type="time" id="timeselect" class="form-control timeselect"  t-on-change="changeDeparteurTime" t-att-value="props.departeurTime"/>
+                </div>    
+            </div>
+            <div class="form-group col-md-11">
+                <div class="input-group mb-3 input_style">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            Total passagers
+                        </div>
+                    </div>
+                    <input id="total_passengers" type="number" value="0" readonly="readonly" class="form-control" />
+                </div>    
+            </div>
+
+            <div class="form-group col-md-11 input-group-lg">
+                <div class="input-group mb-3 input_style important_price_group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text important_val_less_price">Prix</div>
+                    </div>
+                    <input id="amount_total" type="number" readonly="readonly" step="0.01" t-att-value="props.price['fullPrice']" class="form-control important_val" />
+                    <div class="input-group-prepend">
+                        <div class="input-group-text important_val_less">DZ</div>
+                    </div>
+                </div>    
+            </div>
+
+            <div class="form-group col-md-11 input-group-lg">
+                <div class="input-group mb-3 input_style_green important_price_group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text green_background important_val_less">Reçu</div>
+                    </div>
+                    <input id="amount_given" type="number" step="0.01" value="0.00" class="form-control important_val green_color" />
+                    <div class="input-group-prepend">
+                        <div class="input-group-text important_val_less">DZ</div>
+                    </div>
+                </div>    
+            </div>
+
+            <div class="form-group col-md-11 input-group-lg">
+                <div class="input-group mb-3 input_style_red important_price_group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text red_background important_val_less">Reste</div>
+                    </div>
+                    <input id="rest" type="number" step="0.01" value="0.00" readonly="readonly" class="form-control important_val red_color" />
+                    <div class="input-group-prepend">
+                        <div class="input-group-text important_val_less">DZ</div>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="qr_code" class="col-md-11 mt-3">
+                <!-- QR Code ici -->
+            </div>
+        </div>
+    </t>
+</templates>

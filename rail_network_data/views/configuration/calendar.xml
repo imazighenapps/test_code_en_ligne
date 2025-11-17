@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+
+
+
+    <record model="ir.ui.view" id="train_calendar_form">
+      <field name="name">train.calendar.form</field>
+      <field name="model">train.calendar</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+           <group>
+              <group>
+                  <field name="name"/>
+                  <field name="start_date"/>
+                  <field name="end_date"/>
+              </group>
+              <group>
+                <field name="saturday"/>
+                <field name="sunday"/>
+                <field name="monday"/>
+                <field name="tuesday"/>
+                <field name="wednesday"/>
+                <field name="thursday"/>
+                <field name="friday"/>
+              </group>
+           </group>
+            <notebook>
+                <page name="exception_dates" string="Exceptions du calendrie">
+                     <field name="exception_dates_ids">
+                        <list editable="bottom">
+                            <field name="date"/>
+                            <field name="note"/>
+                        </list>
+                     </field>   
+                </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="train_calendar_list">
+      <field name="name">train.calendar.list</field>
+      <field name="model">train.calendar</field>
+      <field name="arch" type="xml">
+        <list>
+            <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="train_calendar_action">
+      <field name="name">Calendrier</field>
+      <field name="res_model">train.calendar</field>
+      <field name="view_mode">list,form</field>
+      <field name="target">current</field>
+    </record>
+  </data>
+</odoo>

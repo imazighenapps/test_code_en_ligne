@@ -1,0 +1,32 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="do_refund_form">
+      <field name="name">do.refund.form</field>
+      <field name="model">do.refund</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+                <group>
+                    <group>
+                        <field name="note"/> 
+                    </group>
+                </group>
+          </sheet>
+            <footer>
+                <button name="create_refund" string="Rembourser" class="oe_highlight" type="object" data-hotkey="S" />
+                <button special="cancel" data-hotkey="J" string="Fermer" />
+            </footer>
+        </form>
+      </field>
+    </record>
+
+    
+
+    <record model="ir.actions.act_window" id="do_refund_action">
+      <field name="name">Remboursement</field>
+      <field name="res_model">do.refund</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+  </data>
+</odoo>

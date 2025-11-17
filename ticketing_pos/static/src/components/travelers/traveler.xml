@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="Traveler" owl="1">
+        <div class="form-check form-check-inline">
+            <label class="form-check-label me-5">
+                <input type="radio" t-on-change="onTariffCategoryChange" name="tariff_category" value="ordinary" class="form-check-input" checked='checked'/>
+                Ordinaire
+            </label>
+            <label class="form-check-label me-5">
+                <input type="radio" t-on-change="onTariffCategoryChange" name="tariff_category" value="reduced" class="form-check-input"/>
+                Réduit
+            </label>
+            <label class="form-check-label me-5">
+                <input type="radio" t-on-change="onTariffCategoryChange" name="tariff_category" value="free" class="form-check-input"/>
+                Gratuit
+            </label>
+            <label class="form-check-label me-5">
+                <input type="radio" t-on-change="onTariffCategoryChange" name="tariff_category" value="group" class="form-check-input"/>
+                Groupe
+            </label>
+        </div>
+      
+
+        <!-- Formulaires de sélection -->
+   
+            <div class="row">
+                <!-- Type de vente -->
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Type de vente</span>
+                        <select class="form-control">
+                            <option>Billet ordinaire</option>
+                            <option>Billet avec réservation à confirmer</option>
+                            <option>Taxes supplémentaires</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Parcours -->
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Parcours</span>
+                        <select class="form-control">
+                            <option>Aller simple</option>
+                            <option>Aller/Retour</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Catégorie tarifaire -->
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Catégorie tarifaire</span>
+                        <select class="form-control" t-on-change="onTravelerProfileChange" >
+                            <t t-foreach="state.filteredProfiles" t-as="tp" t-key="tp.id">
+                                <option t-att-id="tp.id" t-att-value="tp.id"><t t-esc="tp.name"/></option>
+                            </t>   
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nombre -->
+                <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Nombre</span>
+                        <input type="number" value="1" min="1" class="form-control" t-on-change="onTravelerCountChange" />
+                    </div>
+                </div>
+
+                <!-- Réduction -->
+                <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Réd</span>
+                        <input type="text" class="form-control" t-att-value="state.profileSelected.discount"  readonly="readonly">
+                             <t t-esc="state.profileSelected.discount"/>
+                        </input>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+
+                <!-- "Avec" -->
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Avec</span>
+                        <select class="form-control" t-on-change="onTravelerProfileWithChange">
+                            <option value="">Aucun</option>
+                            <t t-foreach="state.profileWith" t-as="tp" t-key="tp.id">
+                                <option t-att-id="tp.id" t-att-value="tp.id"><t t-esc="tp.name"/></option>
+                            </t>   
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nombre avec -->
+                <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Nombre</span>
+                        <input type="number" min="0" max="100" value="0" class="form-control" t-on-change="onTravelerWithCountChange"/>
+                    </div>
+                </div>
+
+                <!-- Réduction avec -->
+                <div class="col-md-3 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">Réd</span>
+                        <t t-if="state.profileWith.length == 0">
+                            <input type="text" value="0" readonly="readonly" class="form-control"/>
+                        </t>
+                        <t t-else="state.profileWith.length > 0">
+                            <input type="text" t-att-value="state.profileWithSelected.discount" readonly="readonly" class="form-control"/>
+                        </t>
+                        <span class="input-group-text">%</span>
+                    </div>
+                </div>
+        </div>
+
+    
+    </t>
+</templates>

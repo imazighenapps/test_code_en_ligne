@@ -1,0 +1,87 @@
+<t t-name="Stations" owl="1">
+  <div class="stations-container d-flex align-items-center flex-wrap gap-3">
+
+    <!-- Gare de départ -->
+    <div class="stations-item d-flex align-items-center me-3">
+      <label for="StartStation" class="stations-label me-2">
+        De
+      </label>
+
+      <select
+        id="StartStation"
+        t-on-change="onStartStationChange"
+        class="form-select"
+        aria-describedby="labelStartStation"
+       
+      >
+        <option value="" selected="selected" disabled="disabled">Sélectionner...</option>
+        <t t-foreach="props.stations" t-as="station" t-key="station.id">
+          <option t-att-value="station.id"><t t-esc="station.name"/></option>
+        </t>
+      </select>
+
+    </div>
+
+    <!-- Gare d'arrivée -->
+    <div class="stations-item d-flex align-items-center me-3">
+      <label for="EndStation" class="stations-label me-2">
+        À
+      </label>
+      <select
+        id="EndStation"
+        t-on-change="onEndStationChange"
+        class="form-select"
+        aria-describedby="labelEndStation"
+        t-att-value="props.endStationSelected"
+      >
+        <option value="" selected="selected" disabled="disabled">Sélectionner...</option>
+        <t t-foreach="props.stations" t-as="station" t-key="station.id">
+          <option t-att-value="station.id" t-att-selected="station.id == props.endStationSelected" ><t t-esc="station.name"/></option>
+        </t>
+      </select>
+    </div>
+
+    <!-- Classe -->
+    <div class="stations-item d-flex align-items-center me-3">
+      <label for="input_train_class" class="stations-label me-2">
+        Classe
+      </label>
+      <select
+        id="input_train_class"
+        t-on-change="onTrainClassChange"
+        class="form-select"
+        aria-describedby="labelTrainClass"
+      >
+        <t t-foreach="props.classes" t-as="cls" t-key="cls.id">
+          <option  t-att-selected="cls.id == props.trainClassSelected" t-att-value="cls.id"><t t-esc="cls.name"/></option>
+        </t>
+      </select>
+    </div>
+
+    <!-- Distance -->
+    <div class="stations-item d-flex align-items-center">
+      <label for="global_distance" class="stations-label me-2">
+        Distance :
+      </label>
+      <div class="d-flex align-items-center">
+        <input
+          id="global_distance"
+          readonly="readonly"
+          type="text"
+          t-att-value="props.distance"
+          class="form-control me-1"
+          aria-describedby="labelDistance"
+          style="width: 80px;"
+        />
+        <span class="distance-unit">KM</span>
+      </div>
+    </div>
+    <!-- <div class="stations-item d-flex align-items-center">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+            <label class="form-check-label" for="flexSwitchCheckDefault">Correspondance</label>
+        </div>
+    </div> -->
+
+  </div>
+</t>

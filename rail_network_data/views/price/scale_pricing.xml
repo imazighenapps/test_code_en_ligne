@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="scale_pricing_tree_view">
+      <field name="name">scale.pricing.tree.view</field>
+      <field name="model">scale.pricing</field>
+      <field name="arch" type="xml">
+        <list string="Barèmes des prix de transport">
+            <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="scale_pricing_form_view">
+      <field name="name">scale.pricing.form.view</field>
+      <field name="model">scale.pricing</field>
+      <field name="arch" type="xml">
+        <form string="Barème des prix de transport">
+          <sheet>
+            <group>
+                <group>
+                    <field name="name" />
+                    <field name="base_price_kilometer_id"/>
+                </group>
+                <group>
+                    <field name="service_id"/>
+                    <field name="train_type_ids" widget="many2many_tags"/>
+                </group>
+            </group>
+            <group>
+               <group>
+                  <field name="minimum_perception" />
+                  <field name="tax"/>
+                  <button string="Calculer" name="get_calculated_price" type="object" class="oe_highlight"/>
+                </group>
+                <group>
+                    <field name="class_ids"  widget="many2many_tags" />
+                </group>
+            </group>   
+            <notebook>
+              <page string="Paramétrage palier de distance">
+                  <field name="distance_level_setting_ids">
+                      <list editable="bottom" >
+                        <field name="start_distance" style="text-align: center"/>    
+                        <field name="end_distance" style="text-align: center"/>       
+                        <field name="calculation_basis" style="text-align: center"/>   
+                      </list>  
+                      <form>
+                        <group>
+                            <field name="start_distance" />    
+                            <field name="end_distance" />       
+                            <field name="calculation_basis" />    
+                        </group>
+                      </form>                
+                  </field>
+              </page>
+              <page string="Calcul du barème">
+                    <field name="scale_calculation_ids">
+                      <list editable="bottom">
+                        <field name="start_distance"/>    
+                        <field name="end_distance"/>       
+                        <field name="charging_distance"/>  
+                        <field name="pbk"/>      
+                        <field name="amount_untaxed"/>    
+                        <field name="amount_total"/>
+                        <field name="amount_stamp"/>       
+                        <field name="full_price"/>   
+                      </list>
+                    </field>
+              </page>
+            </notebook>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="scale_pricing_action">
+      <field name="name">Barème des prix de transport</field>
+      <field name="res_model">scale.pricing</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+  </data>
+</odoo>

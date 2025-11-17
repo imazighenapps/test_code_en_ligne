@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Raccourcis" name="shortcut">
+                       <field name="shortcut_ids">
+                            <list editable="bottom">
+                                <field name="id_station"/>
+                                <field name="station_name"/>
+                                <field name="shortcut"/>
+                            </list>
+                       </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,48 @@
+@media (min-width: 1533px) {
+    .o-mail-Form-chatter.customBottom {
+        width: 100% !important;
+    }
+
+    .o_form_view.o_xxl_form_view .customBottom {
+        flex: auto !important;
+    }
+
+    .o_form_view .customBottom {
+        max-width: none !important;
+    }
+}
+
+
+.o_field_char {
+   width: 80% !important;
+
+}
+
+.o_input {
+
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 4px 5px !important;
+    /* font-size: 14px; */
+    transition: all 0.3s ease;
+}
+
+/* Quand on passe la souris */
+.o_input:hover {
+    background-color: #ffffff;
+    border-color: #999;
+}
+
+/* Quand le champ est actif (focus) */
+.o_input:focus {
+    background-color: #fff;
+    border-color: #007bff; /* bleu Odoo */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+    outline: none;
+}
+
+
+
+.o_list_table thead  {
+    background-color: rgb(232 233 233 / 17%) !important
+}
